@@ -4,8 +4,11 @@ import { User } from "../models/userModel.js";
 import { sendEmail } from "../utils/sendEmail.js";
 import twilio from "twilio";
 
+import dotenv from 'dotenv';
+dotenv.config({ path: './config.env' });
 
-const client = twilio(process.env.TWILIO_ID, process.env.TWILIO_AUTH_TOKEN);
+
+const client = twilio(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN);
 
 export const register = catchAsyncError(async (req, res, next) => {
     try {
