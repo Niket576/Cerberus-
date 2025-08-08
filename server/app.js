@@ -5,6 +5,7 @@ import cors from 'cors';
 import { connection } from './database/dbConnection.js';
 import { errorMiddleware } from './middlewares/error.js';
 import userRouter from './routes/userRouter.js';
+import { removeUnverifiedAccounts } from './automation/removeUnverifiedAccounts.js';
 
 
 dotenv.config({ path: './config.env' });
@@ -23,6 +24,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/v1/user', userRouter);
+
+removeUnverifiedAccounts(); // Assuming this function is imported from the automation module
 
 connection();
 
